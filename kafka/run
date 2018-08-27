@@ -1,0 +1,7 @@
+# build
+docker build -t kafka:1.1.1 .
+
+# kafka1
+docker run -d --name kafka1 -p 9092:9092 --link zookeeper -e broker_id=1 -e zookeeper_addr=zookeeper:2181  kafka:1.1.1
+docker run -d --name kafka2 -p 9093:9092 --link zookeeper -e broker_id=2 -e zookeeper_addr=zookeeper:2181  kafka:1.1.1
+docker run -d --name kafka3 -p 9094:9092 --link zookeeper  -v E:\logs\kafka:/opt/kafka/logs -e broker_id=2 -e zookeeper_addr=zookeeper:2181  kafka:1.1.1
