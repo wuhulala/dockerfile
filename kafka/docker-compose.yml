@@ -7,11 +7,10 @@ services:
            - 9092:9092
         networks:
            - kafka_cluster
-        volumes:
-           - E:\logs\kafka1:/opt/kafka3/logs
         environment:
            - zookeeper_addr=zookeeper:2181
            - broker_id=1
+           - kafka_port=9092
     kafka2:
         image:
            kafka:1.1.1
@@ -19,11 +18,10 @@ services:
            - 9093:9092
         networks:
            - kafka_cluster
-        volumes:
-           - E:\logs\kafka2:/opt/kafka3/logs
         environment:
            - zookeeper_addr=zookeeper:2181
            - broker_id=2
+           - kafka_port=9093
     kafka3:
         image:
            kafka:1.1.1
@@ -31,11 +29,10 @@ services:
            - 9094:9092
         networks:
            - kafka_cluster
-        volumes:
-           - E:\logs\kafka3:/opt/kafka3/logs
         environment:
            - zookeeper_addr=zookeeper:2181
            - broker_id=3
+           - kafka_port=9094
     zookeeper:
         image:
             registry.cn-hangzhou.aliyuncs.com/21epub/zookeeper
@@ -43,14 +40,7 @@ services:
            - 2181:2181
         networks:
            - kafka_cluster
-    couchbase:
-         image:
-            couchbase
-         ports:
-            - 8091-8094:8091-8094
-            - 11210:11210
-         networks:
-            - kafka_cluster
+
 networks:
    kafka_cluster:
     driver: bridge
