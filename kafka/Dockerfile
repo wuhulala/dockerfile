@@ -11,10 +11,12 @@ ENV kafka_port=9092
 ADD kafka_2.11-1.1.1.tgz /opt/
 RUN mv /opt/kafka_2.11-1.1.1 /opt/kafka
 
+#
+
 VOLUME /opt/kafka/logs
 VOLUME /opt/kafka/data
 
 WORKDIR /opt/kafka/
 
-ENTRYPOINT sed -i "60clog.dirs=/opt/kafka/data" /opt/kafka/config/server.properties && sed -i "31clisteners=PLAINTEXT://kafka${broker_id}:${kafka_port}" /opt/kafka/config/server.properties && sed -i "123czookeeper.connect=${zookeeper_addr}" /opt/kafka/config/server.properties && sed -i "21cbroker.id=${broker_id}" /opt/kafka/config/server.properties  && /opt/kafka/bin/kafka-server-start.sh /opt/kafka/config/server.properties
+ENTRYPOINT sed -i "65cnum.partitions=4" /opt/kafka/config/server.properties && sed -i "60clog.dirs=/opt/kafka/data" /opt/kafka/config/server.properties  && sed -i "31clisteners=PLAINTEXT://kafka${broker_id}:${kafka_port}" /opt/kafka/config/server.properties && sed -i "123czookeeper.connect=${zookeeper_addr}" /opt/kafka/config/server.properties && sed -i "21cbroker.id=${broker_id}" /opt/kafka/config/server.properties  && /opt/kafka/bin/kafka-server-start.sh /opt/kafka/config/server.properties
 

@@ -7,6 +7,8 @@ services:
            - 9092:9092
         networks:
            - kafka_cluster
+        depends_on:
+                   - zookeeper
         environment:
            - zookeeper_addr=zookeeper:2181
            - broker_id=1
@@ -15,9 +17,11 @@ services:
         image:
            kafka:1.1.1
         ports:
-           - 9093:9092
+           - 9093:9093
         networks:
            - kafka_cluster
+        depends_on:
+                   - zookeeper
         environment:
            - zookeeper_addr=zookeeper:2181
            - broker_id=2
@@ -26,9 +30,11 @@ services:
         image:
            kafka:1.1.1
         ports:
-           - 9094:9092
+           - 9094:9094
         networks:
            - kafka_cluster
+        depends_on:
+           - zookeeper
         environment:
            - zookeeper_addr=zookeeper:2181
            - broker_id=3
