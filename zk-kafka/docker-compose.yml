@@ -18,7 +18,21 @@ services:
            - 2181:2181
         networks:
            - kafka_cluster
-
+    couchbase:
+        image:
+           couchbase
+        ports:
+           - 8091-8094:8091-8094
+           - 11210:11210
+        networks:
+           - kafka_cluster
+    mongodb:
+        image:
+           mongo:3.6.4
+        ports:
+           - 27017:27017
+        networks:
+           - kafka_cluster
 networks:
    kafka_cluster:
     driver: bridge

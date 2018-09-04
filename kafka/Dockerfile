@@ -11,6 +11,10 @@ ENV kafka_port=9092
 ADD kafka_2.11-1.1.1.tgz /opt/
 RUN mv /opt/kafka_2.11-1.1.1 /opt/kafka
 
+# 修改时区
+ADD Shanghai /usr/share/zoneinfo/$TZ
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+
 #
 
 VOLUME /opt/kafka/logs
