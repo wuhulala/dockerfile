@@ -20,7 +20,7 @@ services:
            - kafka_cluster
     couchbase:
         image:
-           couchbase
+           couchbase:enterprise-4.6.2
         ports:
            - 8091-8094:8091-8094
            - 11210:11210
