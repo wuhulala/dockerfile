@@ -2,22 +2,22 @@ version: '2'
 services:
     kafka1:
         image:
-           kafka:1.1.1
+           registry.cn-hangzhou.aliyuncs.com/wuhulala/kafka:1.1.1
         ports:
            - 9092:9092
         networks:
-           - kafka_cluster
+           - dev_env
         environment:
            - zookeeper_addr=zookeeper:2181
            - broker_id=1
            - kafka_port=9092
     zookeeper:
         image:
-            registry.cn-hangzhou.aliyuncs.com/21epub/zookeeper
+            registry.cn-hangzhou.aliyuncs.com/wuhulala/zookeeper:3.4.10
         ports:
            - 2181:2181
         networks:
-           - kafka_cluster
+           - dev_env
     couchbase:
         image:
            couchbase:enterprise-4.6.2
@@ -25,14 +25,14 @@ services:
            - 8091-8094:8091-8094
            - 11210:11210
         networks:
-           - kafka_cluster
+           - dev_env
     mongodb:
         image:
-           mongo:3.6.4
+           registry.cn-hangzhou.aliyuncs.com/wuhulala/mongodb:3.6.4
         ports:
            - 27017:27017
         networks:
-           - kafka_cluster
+           - dev_env
 networks:
-   kafka_cluster:
+   dev_env:
     driver: bridge
